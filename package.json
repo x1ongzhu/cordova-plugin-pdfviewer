@@ -1,0 +1,27 @@
+{
+  "name": "pdfviewer",
+  "version": "1.0.0",
+  "description": "a cordova plugin for displaying pdf documents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/x1ongzhu/cordova-plugin-pdfviewer.git"
+  },
+  "keywords": [
+    "cordova",
+    "pdf"
+  ],
+  "author": "xiongzhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/x1ongzhu/cordova-plugin-pdfviewer/issues"
+  },
+  "homepage": "https://github.com/x1ongzhu/cordova-plugin-pdfviewer#readme",
+  "cordova": {
+    "id": "cordova-plugin-pdfviewer",
+    "platforms": ["android","ios"]
+}
+}

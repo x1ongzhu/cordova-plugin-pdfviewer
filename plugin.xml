@@ -1,7 +1,38 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="com.x1ongzhu.pdfviewer" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<plugin id="cordova-plugin-pdfviewer" version="1.0.0" 
+    xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <name>pdfViewer</name>
     <js-module name="pdfViewer" src="www/pdfViewer.js">
         <clobbers target="cordova.plugins.pdfViewer" />
     </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="pdfViewer">
+                <param name="android-package" value="com.x1ongzhu.pdfviewer.pdfViewer" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        </config-file>
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <activity android:name="com.x1ongzhu.pdfviewer.PDFActivity" />
+        </config-file>
+        <source-file src="src/android/activity_pdf.xml" target-dir="res/layout" />
+        <source-file src="src/android/bg_page.xml" target-dir="res/drawable" />
+        <source-file src="src/android/pdfViewer.java" target-dir="src/com/x1ongzhu/pdfviewer" />
+        <source-file src="src/android/PDFActivity.java" target-dir="src/com/x1ongzhu/pdfviewer" />
+        <framework src="org.xutils:xutils:3.5.0"/>
+        <framework src="com.github.barteksc:android-pdf-viewer:3.0.0-beta.5"/>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="pdfViewer">
+                <param name="ios-package" value="pdfViewer" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/pdfViewer.m" />
+    </platform>
 </plugin>

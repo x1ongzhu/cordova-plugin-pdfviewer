@@ -1,10 +1,6 @@
 var exec = require('cordova/exec');
 
-exports.open = function (url, success, error, options) {
-    if (!options) {
-        options = {};
-    }
-    options.url = url;
+exports.open = function (options, success, error) {
     if (!success) {
         success = function (res) {
             console.log(res)

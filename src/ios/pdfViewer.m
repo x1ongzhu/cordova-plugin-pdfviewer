@@ -1,28 +1,25 @@
 /********* pdfViewer.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
-
+#import "PDFNavigationController.h"
+#import "PDFViewController.h"
 @interface pdfViewer : CDVPlugin {
   // Member variables go here.
 }
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)open:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation pdfViewer
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)open:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = nil;
-    NSString* echo = [command.arguments objectAtIndex:0];
 
-    if (echo != nil && [echo length] > 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
-    } else {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-    }
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    PDFViewController* pdfCongroller = [[PDFViewController alloc] initWithOptions:command.arguments[0]];
+    PDFNavigationController *nav = [[PDFNavigationController alloc]initWithRootViewController:pdfCongroller];
+    [self.viewController presentViewController:nav animated:YES completion:^{
+        //需要用模态化的方式进行展示
+    }];
 }
 
 @end

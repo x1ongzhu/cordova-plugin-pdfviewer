@@ -34,5 +34,10 @@
             </feature>
         </config-file>
         <source-file src="src/ios/pdfViewer.m" />
+        <source-file src="src/ios/PDFNavigationController.h" />
+        <source-file src="src/ios/PDFNavigationController.m" />
+        <source-file src="src/ios/PDFViewController.h" />
+        <source-file src="src/ios/PDFViewController.m" />
+        <framework src="Masonry" type="podspec" spec="~> 1.1.0"/>
     </platform>
 </plugin>

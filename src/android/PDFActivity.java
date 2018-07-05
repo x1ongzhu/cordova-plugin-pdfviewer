@@ -27,10 +27,10 @@ public class PDFActivity extends Activity implements Callback.CommonCallback<Fil
 
     private final Executor executor = new PriorityExecutor(MAX_DOWNLOAD_THREAD, true);
 
-    private PDFView     pdfView;
+    private PDFView pdfView;
     private ProgressBar progressBar;
-    private TextView    tvPage;
-    private Timer       timeout;
+    private TextView tvPage;
+    private Timer timeout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +39,20 @@ public class PDFActivity extends Activity implements Callback.CommonCallback<Fil
         pdfView = findViewById(getResources().getIdentifier("pdfView", "id", getPackageName()));
         progressBar = findViewById(getResources().getIdentifier("progressBar", "id", getPackageName()));
         tvPage = findViewById(getResources().getIdentifier("tvPage", "id", getPackageName()));
-        JSONObject params;
+        JSONObject params = null;
         String url = null;
         try {
             params = new JSONObject(getIntent().getStringExtra("params"));
             url = params.getString("url");
         } catch (Exception e) {
             finish();
+        }
+
+        try {
+            String title = params.getString("title");
+            setTitle(title);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         timeout = new Timer();
 
@@ -109,7 +116,6 @@ public class PDFActivity extends Activity implements Callback.CommonCallback<Fil
                     }
                 })
                 .load();
-        setTitle(result.getName());
     }
 
     @Override
